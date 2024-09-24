@@ -8,8 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 const initialState = { email: "", password: "" };
 
 export default function LoginPage() {
-    const navigate=useNavigate()
-    const { readUserProfile,isAuth } =useAuthContext()
+    const navigate = useNavigate()
+    const { readUserProfile, isAuth } = useAuthContext()
     const [formData, setFormData] = useState(initialState);
     const [loading, setLoading] = useState(false); // Added loading state
 
@@ -23,40 +23,42 @@ export default function LoginPage() {
         setFormData(prevState => ({ ...prevState, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password } = formData;
-
+    
         // Check if both fields are filled
         if (!email || !password) {
             notification.error({ message: 'Both email and password must be filled!' });
             return;
         }
-
+    
         // Validate email format
         if (!validateEmail(email)) {
             notification.error({ message: 'Please enter a valid email address' });
             return;
         }
-
+    
         setLoading(true); // Start loading spinner
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                readUserProfile(user)
-                notification.success({ message: 'Login successful!' });
-                navigate('/')
-            })
-            .catch((error) => {
-                console.error("Login failed:", error);
-                notification.error({ message: 'Login failed!' });
-            })
-            .finally(() => {
-                setLoading(false); // Stop loading spinner after login attempt
-            });
-
-        setFormData(initialState); // Reset the form after submission
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            
+            // Wait until the profile is read before navigating
+            await readUserProfile(user); 
+            setFormData(initialState);
+            notification.success({ message: 'Login successful!' });
+    
+            // Navigate to home page after profile is loaded
+            navigate('/'); 
+        } catch (error) {
+            console.error("Login failed:", error);
+            notification.error({ message: 'Login failed!' });
+        } finally {
+            setLoading(false); // Stop loading spinner after login attempt
+        }
     };
+    
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center"

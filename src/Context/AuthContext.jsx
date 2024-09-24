@@ -43,17 +43,16 @@ export default function AuthContextProvider({ children }) {
     // Fetch user profile from Firestore
     const readUserProfile = async (user) => {
         try {
-            const docRef = doc(firestore, "users", user.uid);  // Use user.uid instead of user.id
+            const docRef = doc(firestore, "users", user.uid); 
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists()) {
                 const userData = docSnap.data();
-                // If user data exists, set logged-in state
+                console.log(userData)
                 dispatch({ type: "SET_LOGGED_IN", payload: { user: userData } });
             } else {
-                // If no data found, notify the user
                 notification.error({ message: "User data not found. Please try again or contact support team" });
-                dispatch({ type: "SET_LOGGED_OUT" });  // Set logged out if user profile is missing
+                dispatch({ type: "SET_LOGGED_OUT" });
+
             }
         } catch (error) {
             console.error("Error fetching user profile:", error);
