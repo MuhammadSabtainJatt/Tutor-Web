@@ -9,8 +9,8 @@ const Card = ({ image, title, text }) => {
 
   return (
     <div className="bg-white rounded-lg overflow-hidden flex flex-col items-center p-4">
-      <img src={image} alt={title} className="w-40 h-40 object-cover mb-4"/>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">{title}</h3>
+      <img src={image} alt={title} className="w-20 h-20 object-cover mb-4"/>
+      <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center ">{title}</h3>
       <p className="text-gray-600 text-center">
         {isExpanded ? text : `${text.slice(0, 100)}...`}
         <span
@@ -59,9 +59,9 @@ const App = () => {
   ];
 
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="p-6 grid grid-cols-1 md:grid-cols-3 bg-gray-100 gap-6">
       {cards.map((card, index) => (
-        <Card key={index} image={card.image} title={card.title} text={card.text} />
+        <Card className="shadow" key={index} image={card.image} title={card.title} text={card.text} />
       ))}
     </div>
   );

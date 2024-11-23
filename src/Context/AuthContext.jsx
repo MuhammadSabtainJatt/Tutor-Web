@@ -24,6 +24,7 @@ export default function AuthContextProvider({ children }) {
 
     const [isAppLoading, setIsAppLoading] = useState(true);  // Track if the auth state is still loading
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [authData,setAuthData] =useState({})
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -47,12 +48,13 @@ export default function AuthContextProvider({ children }) {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 const userData = docSnap.data();
-                console.log(userData)
+                setAuthData(userData)
+                
                 dispatch({ type: "SET_LOGGED_IN", payload: { user: userData } });
             } else {
                 notification.error({ message: "User data not found. Please try again or contact support team" });
                 dispatch({ type: "SET_LOGGED_OUT" });
-
+                
             }
         } catch (error) {
             console.error("Error fetching user profile:", error);
@@ -61,7 +63,7 @@ export default function AuthContextProvider({ children }) {
             setIsAppLoading(false);  // Stop loading whether the fetch succeeds or fails
         }
     };
-
+    
     // If the app is still loading the auth state, show a loading screen
     if (isAppLoading) {
         return<div class='flex space-x-2 justify-center items-center bg-slate-900 h-screen dark:invert'>
@@ -71,10 +73,10 @@ export default function AuthContextProvider({ children }) {
        <div class='h-8 w-8 bg-slate-100 rounded-full animate-bounce'></div>
    </div>;  // You can replace this with a custom loader
     }
-
+    
     // Render children only once the auth state is known
     return (
-        <AuthContext.Provider value={{ isAppLoading, ...state, dispatch, readUserProfile }}>
+        <AuthContext.Provider value={{ isAppLoading, ...state, dispatch,authData, readUserProfile }}>
             {children}
         </AuthContext.Provider>
     );

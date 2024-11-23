@@ -57,22 +57,22 @@ const Slider = () => {
         <div className="flex justify-between items-center h-full">
           <button
             onClick={handleLeftClick}
-            className="bg-transparent border-none outline-none text-6xl text-gray-200 p-4 cursor-pointer transform transition-transform duration-100 hover:scale-95"
+            className="bg-transparent border-none outline-none text-3xl md:text-6xl text-white p-4 cursor-pointer transform transition-transform duration-100 hover:scale-95"
           >
             <i className="fas fa-angle-left"></i>
           </button>
           <div className="text-center">
-            <h1 className="text-5xl text-white uppercase font-bold">
+            <h1 className="text-3xl md:text-5xl text-white uppercase font-bold ">
               Discover the Power of Knowledge
             </h1>
-            <p className="slider--text text-lg text-white uppercase my-2"></p>
-            <button className="bg-blue-900 text-white font-bold my-6 py-2 px-8 rounded-lg cursor-pointer hover:bg-blue-600 transition duration-300">
+            <p className="slider--text text-sm md:text-lg text-white uppercase my-2"></p>
+            <button className="bg-gray-900 text-white font-bold my-3 md:my-6 py-1 md:py-2 px-4 md:px-8 rounded-lg cursor-pointer hover:bg-gray-600 transition duration-300">
               Start Learning
             </button>
           </div>
           <button
             onClick={handleRightClick}
-            className="bg-transparent border-none outline-none text-6xl text-gray-200 p-4 cursor-pointer transform transition-transform duration-100 hover:scale-95"
+            className="bg-transparent border-none outline-none text-3xl md:text-6xl text-white p-4 cursor-pointer transform transition-transform duration-100 hover:scale-95"
           >
             <i className="fas fa-angle-right"></i>
           </button>

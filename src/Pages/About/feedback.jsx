@@ -3,20 +3,20 @@ import React from 'react';
 export default function FeedbackSection() {
     const feedbacks = [
         {
-            name: 'Jane Doe',
+            name: 'Zareena',
             relation: 'Mother',
             text: 'My child has learned so much in a fun and engaging way. I couldn’t be happier!',
             image: 'https://randomuser.me/api/portraits/women/44.jpg'
         },
         {
-            name: 'John Smith',
+            name: 'Altaf Hussain',
             relation: 'Father',
             text: 'The teachers are so caring and attentive. My child looks forward to school every day!',
             image: 'https://randomuser.me/api/portraits/men/46.jpg'
         },
         {
-            name: 'Emily Johnson',
-            relation: 'Aunt',
+            name: 'Fatima',
+            relation: 'Sister',
             text: 'A great environment for kids to grow and learn. Highly recommend!',
             image: 'https://randomuser.me/api/portraits/women/47.jpg'
         }
@@ -27,7 +27,7 @@ export default function FeedbackSection() {
             <div className="max-w-6xl mx-auto px-6">
                 {/* Heading and Text */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold mb-4">Parents' Feedback</h2>
+                    <h2 className="text-4xl text-gray-900 font-bold mb-4">Parents' Feedback</h2>
                     <p className="text-lg text-gray-700">
                         Hear what our parents have to say about their experience with our school.
                     </p>

@@ -5,7 +5,7 @@ const year=new Date().getFullYear()
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-10 p-8">
+    <footer className="bg-gray-900 text-white py-10 p-8">
       <div className="container mx-auto flex flex-col items-center">
         {/* Grid for the three columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-5xl">
