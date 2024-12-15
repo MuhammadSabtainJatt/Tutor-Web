@@ -26,7 +26,6 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password } = formData;
-    
         // Check if both fields are filled
         if (!email || !password) {
             notification.error({ message: 'Both email and password must be filled!' });

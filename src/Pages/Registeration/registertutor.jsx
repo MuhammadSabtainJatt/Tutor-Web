@@ -13,7 +13,8 @@ const initialState = {
 export default function TutorRegistration() {
   const { authData } = useAuthContext()
   const [formData, setFormData] = useState({
-    fullName: `${authData.name}`, gender: '', cnic: '', phone: '', qualification: '', address: '', tuitionArea: '', otherArea: '', experience: '', conveyance: '', fee: '', termsAccepted: false, id: `${authData.id}`
+    
+    fullName: `${authData.name}`, gender: '', cnic: '', phone: '', qualification: '', address: '', tuitionArea: '', otherArea: '', experience: '', conveyance: '', fee: '', termsAccepted: false, id: `${authData.id}`,imageURL:authData.imageUrl
   });
 
   const handleChange = (e) => {
@@ -51,6 +52,9 @@ export default function TutorRegistration() {
     try {
       e.preventDefault();
       if (validateForm()) {
+console.log(formData)
+return
+        
         await setDoc(doc(firestore, "TutorData", authData.id), formData);
         message.success("Registration successful!");
       }
